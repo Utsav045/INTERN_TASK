@@ -1,0 +1,73 @@
+# 📝 Resume Builder Form
+
+A clean and minimal HTML form for collecting resume information, built with simplicity in mind.
+
+## 🚀 Features
+- All essential resume fields (Personal info, education, experience, skills)
+- Clean Inter font for modern typography
+- Responsive design works on all devices
+- Simple validation for required fields
+- PDF upload for resumes
+- Profile photo upload support
+
+## 🛠️ Technologies Used
+- HTML5
+- CSS3 (with Inter font from Google Fonts)
+- Basic form validation
+
+## 📋 Form Fields
+
+### Personal Information
+- Full Name (required)
+- Email (required)
+- Phone (required)
+- Date of Birth
+- Gender
+- Marital Status
+- Nationality
+- Address
+
+### Professional Profiles
+- LinkedIn URL
+- GitHub URL
+
+### Documents
+- Profile Photo upload
+- Resume PDF upload (required)
+
+### Career Information
+- Career Objective
+- Highest Qualification (required)
+- College/University (required)
+- Year of Graduation (required)
+
+### Skills & Experience
+- Technical Skills
+- Programming Languages
+- Certifications
+- Work Experience (years)
+- Last Company
+- Job Role
+
+### Additional Info
+- Languages Known
+- Hobbies
+
+### Declaration
+- Accuracy confirmation checkbox (required)
+
+## 🎨 Design Choices
+- Uses Inter font family for clean, modern typography
+- Simple, intuitive layout
+- Blue submit button for clear call-to-action
+- Required fields clearly marked
+- Mobile-friendly responsive design
+
+## 🔧 How to Use
+1. Clone or download this repository
+2. Open `index.html` in any web browser
+3. Fill out the form
+4. Submit (note: this is frontend only - backend integration would be needed for actual submission handling)
+
+## 📜 License
+This project is open source and available under the [MIT License](LICENSE).
