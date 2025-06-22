@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+}
+
+/* Navigation */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-link {
+    color: #f5f5f7;
+    font-size: 14px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+/* Product Cards */
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.left-card, .right-card {
+    width: 48%;
+    min-width: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    background: white;
+}
+
+.left-card:hover, .right-card:hover {
+    transform: translateY(-5px);
+}
+
+.left-card img, .right-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.left-card-text, .right-card-text {
+    text-align: center;
+    color: #1d1d1f;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #86868b;
+}
+
+button {
+    background: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 980px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #0077ed;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 14px;
+    color: #6e6e73;
+    margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        gap: 15px;
+        padding: 15px;
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+    
+    .left-card, .right-card {
+        width: 100%;
+    }
+    
+    .left-card img, .right-card img {
+        height: 250px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    p {
+        font-size: 18px;
+    }
+}
