@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website with Auth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .auth-buttons button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .auth-buttons button:hover {
+            background-color: #2980b9;
+        }
+        
+        .main-content {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .auth-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .auth-form h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .submit-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .form-footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .form-footer a {
+            color: #3498db;
+            cursor: pointer;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .welcome-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SimpleSite</div>
+        <div class="auth-buttons">
+            <button id="loginBtn">Login</button>
+            <button id="signupBtn">Sign Up</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h1>Welcome to SimpleSite</h1>
+        <p>A basic website with login and signup functionality</p>
+        
+        <div class="welcome-message" id="welcomeMessage">
+            Welcome back, <span id="usernameDisplay"></span>!
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-modal" id="loginModal">
+        <div class="auth-form">
+            <span class="close-btn" id="closeLogin">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <div class="form-footer">
+                Don't have an account? <a id="showSignup">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="auth-modal" id="signupModal">
+        <div class="auth-form">
+            <span class="close-btn" id="closeSignup">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <div class="form-footer">
+                Already have an account? <a id="showLogin">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Utsav.
+    </footer>
+
+    <script>
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeSignup = document.getElementById('closeSignup');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const usernameDisplay = document.getElementById('usernameDisplay');
+
+        // Sample users (in a real app, this would be a database)
+        let users = [
+            { name: "Admin", email: "admin@example.com", password: "password123" }
+        ];
+        let currentUser = null;
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => loginModal.style.display = 'flex');
+        signupBtn.addEventListener('click', () => signupModal.style.display = 'flex');
+        closeLogin.addEventListener('click', () => loginModal.style.display = 'none');
+        closeSignup.addEventListener('click', () => signupModal.style.display = 'none');
+        showSignup.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'flex';
+        });
+        showLogin.addEventListener('click', () => {
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+        loginForm.addEventListener('submit', handleLogin);
+        signupForm.addEventListener('submit', handleSignup);
+
+        // Functions
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Check if user exists
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                usernameDisplay.textContent = user.name;
+                welcomeMessage.style.display = 'block';
+                loginModal.style.display = 'none';
+                loginForm.reset();
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            // Check if email already exists
+            const emailExists = users.some(u => u.email === email);
+            
+            if (emailExists) {
+                alert('Email already registered');
+                return;
+            }
+            
+            // Add new user
+            users.push({ name, email, password });
+            currentUser = { name, email };
+            usernameDisplay.textContent = name;
+            welcomeMessage.style.display = 'block';
+            signupModal.style.display = 'none';
+            signupForm.reset();
+            
+            alert('Account created successfully!');
+        }
+    </script>
+</body>
+</html>
